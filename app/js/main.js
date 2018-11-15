@@ -2,9 +2,9 @@
 
 var myToDO={
     data: [
-        {day: '10 November 2018',name: 'qqqqqqqqq', text: ''},
-        {day: '12 November 2018',name: 'aaaaaaaa', text: ''},
-        {day: '15 November 2018',name: 'wwwwww', text: ''}
+        {day: {sec:'1542000000000',string: '12 Nov 2018'},name: 'qqqqqqqqq', text: ''},
+        {day: {sec:'1542111111111',string: '13 Nov 2018'},name: 'aaaaaaaa', text: ''},
+        {day: {sec:'1542292222222',string: '15 Nov 2018'},name: 'wwwwww', text: ''}
     ],
     showData: function () {
         $('.task-list').empty();
@@ -46,14 +46,14 @@ var myToDO={
             ];
         const c  = new Date();
         let prom = c.getTime();
-        console.log(prom);
         let d = new Date(prom);
         
         let dateStamp = d.getDate() +" " + months[d.getMonth()] +" "+ d.getFullYear();
         return {sec:prom,string:dateStamp};     
     },
     sort:function(){
-        console.log('sdfs');
+        this.data.reverse(); 
+        this.showData();
     }
 }
 
@@ -84,8 +84,7 @@ $(document).ready(function(){
         let item = $(this).attr('item');        
         myToDO.showDetail(item);      
     });
-    $('#sort').on("click", function(){   
-     
+    $('#sort').on("click", function(){        
         myToDO.sort();      
     })  
 
